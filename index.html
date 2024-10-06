@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkili İletişim Atölyesi</title>
+    <style>
+        /* Genel Stil */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header ve Navigasyon */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Çerez Bildirimi */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cookie-banner p {
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .cookie-banner .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-banner button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cookie-banner .accept-all {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .cookie-banner .accept-selected {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .cookie-banner .reject-all {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Ana İçerik */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        .container h2 {
+            color: #007bff;
+            margin-top: 30px;
+        }
+
+        .container h3 {
+            color: #0056b3;
+            margin-top: 20px;
+        }
+
+        .container ul {
+            padding-left: 20px;
+        }
+
+        .scenario, .analysis {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #007bff;
+        }
+
+        .analysis {
+            background-color: #d4edda;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Blog ve Scriptler Bölümü */
+        .blog-section, .scripts-section {
+            margin-top: 40px;
+        }
+
+        .blog-posts, .call-scripts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .blog-post, .call-script {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .blog-post h4, .call-script h4 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .blog-post a, .call-script a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .blog-post a:hover, .call-script a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #007bff;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Çerez Bildirimi -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>
+            Size mümkün olan en iyi deneyimi sunmak için çerezleri kullanıyoruz. 
+            Ayrıca, web sitesini sizin için sürekli olarak geliştirmek amacıyla kullanıcı 
+            davranışını analiz etmemize de olanak tanırlar.
+        </p>
+        <div class="buttons">
+            <button class="accept-all" onclick="acceptAllCookies()">Hepsini Kabul Et</button>
+            <button class="accept-selected" onclick="acceptSelectedCookies()">Seçili Olanları Kabul Et</button>
+            <button class="reject-all" onclick="rejectAllCookies()">Hepsini Reddet</button>
+        </div>
+    </div>
+
+    <!-- Header ve Navigasyon -->
+    <header>
+        <h1>Etkili İletişim Atölyesi</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="scripts.html">Etkili Çağrı Scriptleri</a></li>
+                <li><a href="katilim.html">Katılım</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Ana İçerik -->
+    <div class="container">
+        <h2>Etkili Çağrı Scriptleri - 5 Örnek Script</h2>
+        <p>
+            Telefonla pazarlama başarısı için ilgi çekici çağrı scriptleri oluşturun. 
+            Potansiyel müşterileri harekete geçirin ve istenen sonuçları elde edin.
+        </p>
+
+        <h3>Etkili Çağrı Scriptlerinin Önemi</h3>
+        <p>
+            Etkili çağrı scriptleri oluşturmak, telefonda müşterilerle tutarlı ve başarılı 
+            etkileşimler sağlamak için oldukça önemlidir. İyi hazırlanmış bir çağrı scripti, 
+            ekibinizin müşteri sorularını yanıtlamasına, itirazları ele almasına ve konuşmaları 
+            yapılandırılmış ve profesyonel bir şekilde yönlendirmesine yardımcı olur. 
+            İşte etkili çağrı scriptleri oluşturmanız için bazı ipuçları:
+        </p>
+
+        <ol>
+            <li><strong>Çağrı Scriptlerinin Amacı ve Hedef Kitlenizi Anlama:</strong> 
+                Çağrı scriptleri, ekibiniz için telefon etkileşimleri sırasında bir yol haritası görevi görmektedir. 
+                Müşterinin ihtiyaçlarına göre kişiselleştirmeye olanak tanıyarak, yapılandırılmış bir çerçeve sunarlar. 
+                Çağrı scriptlerini oluşturmadan önce hedef kitlenizin tercihlerini, sıkıntı noktalarını ve 
+                yaygın sorularını anlamanız önemlidir. Scriptin tonunu ve içeriğini onlarla uyum sağlayacak şekilde 
+                ayarlayın.
+            </li>
+            <li><strong>Çağrı Scriptinin Yapılandırılması ve Kişiselleştirme:</strong> 
+                Çağrı scriptini selamlama, tanıtma, sorun çözme, itirazları ele alma, değer önerisi ve kapanışı 
+                kapsayan bölümlere ayırın. Her bölümden diğerine geçiş doğal bir şekilde olmalıdır. 
+                Scriptler yapı sağlasa da, ekibinize müşterinin cevaplarına dayalı olarak etkileşimleri 
+                kişiselleştirmeyi teşvik edin. Bu da, insana dönük bir dokunuş ekler ve bir samimiyet oluşturur.
+            </li>
+            <li><strong>Selamlama, Empati ve Aktif Dinleme:</strong> 
+                Dostça bir selamla başlayın, kendinizi ve şirketinizi tanıtın ve çağrının amacını kısaca 
+                açıklayın. Tanıtımı özlü ve çekici hale getirin. Ekibinizi çağrı boyunca aktif bir şekilde 
+                dinlemeye ve empati göstermeye yönlendirin. Bu durum, samimiyet kurmaya yardımcı olur ve 
+                müşterinin duyulduğunu hissetmesini sağlar.
+            </li>
+            <li><strong>Sorun Çözme ve Çözümler ve İtirazlarla Başa Çıkma:</strong> 
+                Müşterinin sorusunu veya endişesini doğrudan ele alın. Net ve özlü çözümler sunun, 
+                ürününüzün veya hizmetinizin, sorunlarını çözmede sunduğu değere odaklanın. 
+                İtirazları öngörün ve yaygın endişeleri ele alan senaryo tabanlı cevaplar sunun. 
+                Ekibinizi itirazları konuşmalara dönüştürmelerine ve değer odaklı çözümler sunmaları için 
+                yönlendirin.
+            </li>
+            <li><strong>Değer Teklifleri, Harekete Geçirme ve Sonraki Adımlar:</strong> 
+                Ürününüzün veya hizmetinizin sunduğu eşsiz değeri açıkça ifade edin. 
+                Müşterinin ihtiyaçları ve zorlukları ile doğrudan uyum sağlayan faydaları vurgulayın. 
+                Görüşmeyi, tartışılan çözümleri özetleyerek ve net bir harekete geçme çağrısı sunarak 
+                sonlandırın. Müşterinin atması gereken sonraki adımları veya sunacağınız takip adımlarını 
+                net olarak belirtin.
+            </li>
+            <li><strong>Aktif Kapanış, Pratik Yapma ve Geribildirim:</strong> 
+                Çağrıyı, müşterinin zamanı için teşekkür ederek kapatın ve yardım etmeye istekli 
+                olduğunuzu yineleyin. Müşterinin çağrıdan olumlu bir izlenimle ayrılmasını sağlayın. 
+                Çağrı scriptini düzenli olarak ekibinizle pratik yapın. Yapıcı geribildirim sağlayın ve 
+                scripti kendi kişisel tarzlarına uyarlamaları için teşvik edin, ancak kurallar içinde kalmalarını 
+                sağlayın.
+            </li>
+            <li><strong>Sürekli İyileştirme, Uyumluluk ve Yönetmelikler:</strong> 
+                Müşteri geri bildirimleri ve sonuçlarına dayalı olarak çağrı scriptlerinin etkinliğini 
+                izleyin. Scriptleri, gelişen müşteri ihtiyaçlarını ele alacak şekilde gerektiğinde 
+                güncelleyin. Çağrı scriptlerinin yasal ve düzenleyici kurallara uyduğundan emin olun.
+            </li>
+            <li><strong>Script Esnekliği:</strong> 
+                Çağrı scriptleri belirli bir yapı sağlasa da, benzersiz durumlar veya beklenmedik 
+                müşteri cevaplarıyla başa çıkmak için esneklik sağladıklarından emin olun.
+            </li>
+        </ol>
+
+        <h3>5 Çağrı Scripti Örneği</h3>
+        <p>İşte çeşitli senaryolar için 5 etkili çağrı scripti örneği:</p>
+
+        <div class="call-scripts">
+            <!-- Script 1 -->
+            <div class="call-script">
+                <h4>1. Potansiyel Müşteri Oluşturma için Soğuk Arama Senaryosu</h4>
+                <p><strong>Temsilci:</strong> “Merhaba, [Müşteri Adı]. Benim adım [Adınız], ve [Şirket Adınız] firmasından arıyorum.”</p>
+                <p><strong>Temsilci:</strong> “[Ürün/Hizmetinizi belirtin], işletmelere [belirli faydalar] sağlamak için özelleştirilmiştir.”</p>
+                <p><strong>Temsilci:</strong> “Şu an [ilgili acı noktası] ile ilgili herhangi bir zorlukla karşılaşıyor musunuz?”</p>
+                <p><strong>Temsilci:</strong> “İhtiyaçlarınıza dayanarak, size [özellikler/faydaları belirtin] içeren bir çözüm sunabiliriz.”</p>
+                <p><strong>Temsilci:</strong> “Çözümümüzün işletmenize nasıl fayda sağlayabileceğini öğrenmek ister misiniz?”</p>
+            </div>
+
+            <!-- Script 2 -->
+            <div class="call-script">
+                <h4>2. Müşteri Takip Çağrı Scripti</h4>
+                <p><strong>Temsilci:</strong> “Merhaba, [Müşterinin Adı]. Ben [Adınız], [Şirket Adınız] firmasından arıyorum. Umarım iyisinizdir.”</p>
+                <p><strong>Temsilci:</strong> “[Ürün/Hizmet hakkındaki son görüşmemiz hakkında size ulaşmak istedim].”</p>
+                <p><strong>Temsilci:</strong> “Yanıtlamamı istediğiniz sorularınız veya merak ettikleriniz var mı?”</p>
+                <p><strong>Temsilci:</strong> “[Ürün/Hizmetiniz], birçok müşterinin [belirli sonuçlara] ulaşmasına yardımcı oldu.”</p>
+                <p><strong>Temsilci:</strong> “Eğer ilgileniyorsanız, ilerlemek için sonraki adımları konuşabiliriz.”</p>
+            </div>
+
+            <!-- Script 3 -->
+            <div class="call-script">
+                <h4>3. Hizmet Yükseltme Scripti</h4>
+                <p><strong>Temsilci:</strong> “Merhaba, [Müşterinin Adı]. Ben [Adınız], [Şirket Adınız] firmasından arıyorum.”</p>
+                <p><strong>Temsilci:</strong> “İşinizi değerli buluyoruz ve sizlerle heyecan verici bir fırsatı konuşmak istedik.”</p>
+                <p><strong>Temsilci:</strong> “[Ürün/Hizmet]’imizin daha üst bir sürümü bulunmaktadır, bu da [ekstra özellikler/faydalar] sunmaktadır.”</p>
+                <p><strong>Temsilci:</strong> “Sorularınız olabileceğini anlıyorum ve daha fazla bilgi sağlamak için buradayım.”</p>
+                <p><strong>Temsilci:</strong> “Sizin için bir teklif özelleştirdim, bu da yükseltmeyi ve [belirli avantajları] içeriyor. Bu konuda ne düşünüyorsunuz?”</p>
+            </div>
+
+            <!-- Script 4 -->
+            <div class="call-script">
+                <h4>4. Fatura Sorma Çağrı Scripti</h4>
+                <p><strong>Temsilci:</strong> “Merhaba, ben [Adınız], [Şirket Adı] muhasebe departmanından arıyorum.”</p>
+                <p><strong>Temsilci:</strong> “Yakın tarihli faturanızla ilgili bir soru veya endişe olabileceğini fark ettim.”</p>
+                <p><strong>Temsilci:</strong> “Sorunuzu daha ayrıntılı olarak paylaşabilir misiniz?”</p>
+                <p><strong>Temsilci:</strong> “[Paylaştıklarınıza dayanarak, detayları açıklayabilirim ve bir çözüm sunabilirim.]”</p>
+                <p><strong>Temsilci:</strong> “Bu çözüm, beklentilerinizle uyumlu mu? Danışmak istediğiniz başka bir konu var mı?”</p>
+            </div>
+
+            <!-- Script 5 -->
+            <div class="call-script">
+                <h4>5. Ürün Tanıtımı Çağrısı Scripti</h4>
+                <p><strong>Temsilci:</strong> “Merhaba, [Potansiyel Müşteri Adı]. Ben [Adınız], [Şirket Adı] size ulaşıyorum.”</p>
+                <p><strong>Temsilci:</strong> “Vaktiniz varsa bu çağrı sırasında, size [ürün/hizmet] tanıtımını yapmak istiyorum.”</p>
+                <p><strong>Temsilci:</strong> “Tanıtımı özelleştirmek için, yaşadığınız zorlukları veya hedeflerinizi paylaşabilir misiniz?”</p>
+                <p><strong>Temsilci:</strong> “Size [ürün/hizmet]’imizin bu zorlukları nasıl ele aldığını ve işletmenize nasıl fayda sağladığını anlatacağım.”</p>
+                <p><strong>Temsilci:</strong> “Tanıtım sırasında soru sormaktan çekinmeyin veya sonrasında tartışabiliriz.”</p>
+            </div>
+        </div>
+
+        <div class="analysis">
+            <h3>Analiz ve Sonuç</h3>
+            <p>
+                Etkili çağrı scriptleri, müşteri temsilcilerinin profesyonel ve yapılandırılmış bir şekilde müşteriyle 
+                iletişim kurmasını sağlar. Bu scriptler, temsilcilerin müşterinin ihtiyaçlarını daha iyi anlamalarına, 
+                itirazları etkin bir şekilde yönetmelerine ve sonuç odaklı çözümler sunmalarına yardımcı olur. 
+                Bu sayede müşteri memnuniyeti artar ve satış başarıları yükselir.
+            </p>
+        </div>
+
+        <a href="katilim.html" class="btn">Etkili İletişim Atölyesi'ne Katılın</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Etkili İletişim Atölyesi. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Çerez Bildirimi Fonksiyonları
+        function acceptAllCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            // Çerez kabul edildiğinde yapılacak işlemler burada eklenebilir
+        }
+
+        function acceptSelectedCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            // Seçili çerezler kabul edildiğinde yapılacak işlemler burada eklenebilir
+        }
+
+        function rejectAllCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            // Çerez reddedildiğinde yapılacak işlemler burada eklenebilir
+        }
+
+        // Sayfa yüklendiğinde çerez bildirimi gösterme kontrolü
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookieBanner').style.display = 'flex';
+            }
+        };
+
+        // Çerez kabul edildiğinde localStorage'e kaydetme
+        function acceptAllCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        function acceptSelectedCookies() {
+            localStorage.setItem('cookiesAccepted', 'selected');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        function rejectAllCookies() {
+            localStorage.setItem('cookiesAccepted', 'rejected');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
